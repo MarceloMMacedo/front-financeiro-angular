@@ -15,7 +15,7 @@ import { CurrencyMaskInputMode } from 'ngx-currency';
   styleUrls: ['./list-centro-custo.component.css']
 })
 export class ListCentroCustoComponent implements OnInit {
- 
+
   searchValue = '';
   visible = false;
   centrocusto: CentroCusto;
@@ -48,7 +48,7 @@ export class ListCentroCustoComponent implements OnInit {
     this.centroCustoService.getAll().subscribe(
       rest => {
         setTimeout(() => {
-           this.centrocustos = rest;  
+           this.centrocustos = rest;
            this.listOfDisplaycentrocusto=rest;}
           , 100);
       }
@@ -100,11 +100,11 @@ export class ListCentroCustoComponent implements OnInit {
       rest=>{
 
         this.centrocusto.id=parseFloat( rest.body);
-        this.centrocustos.push(this.centrocusto);  
+        this.centrocustos.push(this.centrocusto);
         this.search();
       }
   );
-   
+
   }
 
   editcentrocusto(b:CentroCusto,content) {
@@ -118,6 +118,27 @@ export class ListCentroCustoComponent implements OnInit {
   }
   async save() {
     this.centroCustoService.save(this.centrocusto) ;
-     
+
+  }
+  printview() {
+    this.spinner.show();
+    setTimeout(() => {
+
+
+
+    this.centroCustoService.getview().subscribe(
+      (response) => {
+        console.log(response);
+        const file = new Blob([response], { type: 'application/pdf' });
+
+        console.log(file);
+        const fileURL = URL.createObjectURL(file);
+
+        console.log(fileURL);
+        window.open(fileURL);
+
+        this.spinner.hide();
+      });
+    }, 1000);
   }
 }

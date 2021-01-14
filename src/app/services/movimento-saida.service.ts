@@ -60,13 +60,12 @@ export class MovimentoSaidaService {
   quitarfatura(id): Observable<FaturaDto> {
     return this.http.get<FaturaDto>(`${API_CONFIG.movimentosaida}/${id}/quitarfatura`);
   }
-  save(p: FaturaDto):Observable<any> {
+  save(p: FaturaDto):Observable<FaturaDto> {
 
 
-      return this.http.put(`${API_CONFIG.movimentosaida}/quitarfatura`, p).pipe(
-        retry(1),
-       // catchError(this.handleError.handleError)
-      )
+    return  this.http.put(`${API_CONFIG.movimentosaida}/quitarfatura`, p);
+      console.log(p)
+      this.http.get<FaturaDto>(`${API_CONFIG.movimentosaida}/${p.id}/quitarfatura`);
 
   }
   oncreate(conta: MovimentoFinanceiro) {

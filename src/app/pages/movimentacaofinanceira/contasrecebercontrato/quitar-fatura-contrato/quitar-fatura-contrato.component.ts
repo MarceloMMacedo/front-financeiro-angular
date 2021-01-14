@@ -125,38 +125,46 @@ export class QuitarFaturaContratoComponent implements OnInit {
     return item.status == 'Aberto';
   }
   save() {
-    if(this.fatura.status=='Quit'){
+    if (this.fatura.status == 'Quit') {
       this.modal.error({
         nzTitle: 'Esta fatura já foi quitada',
       });
 
-    } else{
-    let res: FichaLeituraDto[] = this.fatura.fichaLeitura.filter(this.verificaStatus);
-    if (res.length > 0) {
-      this.modal.error({
-        nzTitle: 'É preciso Atualizar todos os medidores dos equipamentos locados',
-      });
-    } else
-      this.modal.confirm({
-        nzTitle: 'Deseja Quitar Fatura?',
-        nzContent: '<b style="color: red;">A Fatura sera Quitada</b>',
-        nzOkText: 'Sim',
-        nzOkType: 'danger',
-        nzOnOk: () => {
-          setTimeout(() => {   this.movimentoContratoService.save(this.fatura);
+    } else {
+      let res: FichaLeituraDto[] = this.fatura.fichaLeitura.filter(this.verificaStatus);
+      if (res.length > 0) {
+        this.modal.error({
+          nzTitle: 'É preciso Atualizar todos os medidores dos equipamentos locados',
+        });
+      } else
+        this.modal.confirm({
+          nzTitle: 'Deseja Quitar Fatura?',
+          nzContent: '<b style="color: red;">A Fatura sera Quitada</b>',
+          nzOkText: 'Sim',
+          nzOkType: 'danger',
+          nzOnOk: () => {
+            setTimeout(() => {
+              this.movimentoContratoService.save(this.fatura);
 
-            this.finalizado=true;
-        //    this.router.navigate(['resumocontasrecebercontrato', this.exercicio]);
-          /*setTimeout(() => {
-            this.movimentoContratoService.uploadPicture(this.index, this.formData);
-            this.movimentoContratoService.save(this.fatura);
-          }, 100)
-  */
-          this.voltar();},500)
-        },
-        nzCancelText: 'Não'
-      });
-  }
+              this.finalizado = true;
+              //    this.router.navigate(['resumocontasrecebercontrato', this.exercicio]);
+              /*setTimeout(() => {
+                this.movimentoContratoService.uploadPicture(this.index, this.formData);
+                this.movimentoContratoService.save(this.fatura);
+              }, 100)
+      */
+              this.voltar();
+            }, 500);
+            setTimeout(() => {
+              this.movimentoContratoService.save(this.fatura);
+              this.router.navigate(['resumocontasrecebercontrato', this.exercicio]);
+
+              this.voltar();
+            }, 1000)
+          },
+          nzCancelText: 'Não'
+        });
+    }
   }
   voltar() {
     this.router.navigate(['resumocontasrecebercontrato', this.exercicio]);

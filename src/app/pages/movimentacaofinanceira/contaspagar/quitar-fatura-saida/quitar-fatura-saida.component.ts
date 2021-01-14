@@ -114,22 +114,39 @@ export class QuitarFaturaSaidaComponent implements OnInit {
       nzOkType: 'danger',
       nzOnOk: () => {
 
-        this.movimentoSaidaService.uploadPicture(this.index, this.formData);
 
+     //   this.spinner.show();
+        setTimeout(() => {
         this.movimentoSaidaService.save(this.fatura).subscribe(
-          () => {
+          ( ) => {
+
             this.finalizado = true;
             this.utilService.createNotification('success', 'Operação com sucesso', 'Dados gravados com sucesso')
-
+            this.spinner.hide();
           },
           error => {
             let errorMessage;
             errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
        //     this.utilService.createNotification('error', 'Alerta', errorMessage)
           }
-        )
+        );
+        this.movimentoSaidaService.uploadPicture(this.index, this.formData);
+        this.movimentoSaidaService.quitarfatura(this.index).subscribe(
+          rest => {
+            rest.dataquitacao = new Date();
+            if (rest.status == 'Aberto') { this.finalizado = false } else { this.finalizado = true; }
 
 
+            this.fatura = rest;
+            this.somatotal();
+            this.spinner.hide();
+          }
+        );
+
+
+        }, 500);
+        setTimeout(() => {   this.router.navigate(['resumocontaspagar', this.exercicio]);
+      }, 1000);
       },
       nzCancelText: 'Não'
     });

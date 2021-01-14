@@ -54,5 +54,25 @@ export class ContasPagarReceberComponent implements OnInit {
     this.spinner.hide();
   },200)
   }
+  printview() {
+    this.spinner.show();
+    setTimeout(() => {
 
+
+
+    this.reporMovimentoFinanceiroService.getview().subscribe(
+      (response) => {
+        console.log(response);
+        const file = new Blob([response], { type: 'application/pdf' });
+
+        console.log(file);
+        const fileURL = URL.createObjectURL(file);
+
+        console.log(fileURL);
+        window.open(fileURL);
+
+        this.spinner.hide();
+      });
+    }, 1000);
+  }
 }

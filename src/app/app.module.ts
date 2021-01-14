@@ -87,6 +87,7 @@ import { QuitarFaturaContratoComponent } from './pages/movimentacaofinanceira/co
 import { ResumoContasrecebercontratoComponent } from './pages/movimentacaofinanceira/contasrecebercontrato/resumo-contasrecebercontrato/resumo-contasrecebercontrato.component';
 import { NewContaPagarComponent } from './pages/movimentacaofinanceira/contaspagar/new-conta-pagar/new-conta-pagar.component';
 import { EditContaPagarComponent } from './pages/movimentacaofinanceira/contaspagar/edit-conta-pagar/edit-conta-pagar.component';
+import { IndexDemostrativoComponent } from './pages/demonstrativofinanceiro/index-demostrativo/index-demostrativo.component';
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
   interactionPlugin
@@ -147,6 +148,7 @@ registerLocaleData(pt);
     ResumoContasrecebercontratoComponent,
     NewContaPagarComponent,
     EditContaPagarComponent,
+    IndexDemostrativoComponent,
   ],
   imports: [
     BrowserModule, FormsModule,

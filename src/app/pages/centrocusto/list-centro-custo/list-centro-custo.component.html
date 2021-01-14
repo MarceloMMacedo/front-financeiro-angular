@@ -15,11 +15,15 @@
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">Lista</h3>
+
             <div class="form-group form-inline form-element">
                 Pesquisar: <input nz-input placeholder="Pesquisar" class="form-control form-control-sm ml-2 " name="search" [(ngModel)]="searchValue" #search (keyup)="debounceTimeSearch()">
 
             </div>
             <div class="box-tools pull-right">
+              <button type="button" class="btn btn-outline-primary btn-sm"   (click)="printview()">
+                <i nz-icon nzType="printer" nzTheme="outline"></i>Imprimir
+     </button>
                 <button class="btn btn-outline-primary mb-2 mr-2" (click)="newcentrocusto(content)">
           Adicionar
         </button>

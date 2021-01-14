@@ -7,7 +7,7 @@ import { UtilsService } from './utils.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DecimalPipe } from '@angular/common';
 import { tap, debounceTime, switchMap, delay } from 'rxjs/operators';
-import { Pages } from '../models/pages';  
+import { Pages } from '../models/pages';
 import { CentroCusto } from '../models/centro-custo';
 
 @Injectable({
@@ -50,4 +50,13 @@ export class CentroCustoService {
     }, 100);
 
   }
+
+  getview(): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+      // 'responseType'  : 'blob' as 'json'        //This also worked
+    };
+    return this.http.get<any>(`${API_CONFIG.centrocustos}/viewpdf`, httpOptions);
+  }
+
 }
