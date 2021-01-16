@@ -40,6 +40,7 @@ import { ResumoContasrecebercontratoComponent } from './pages/movimentacaofinanc
 import { QuitarFaturaContratoComponent } from './pages/movimentacaofinanceira/contasrecebercontrato/quitar-fatura-contrato/quitar-fatura-contrato.component';
 import { EditContaPagarComponent } from './pages/movimentacaofinanceira/contaspagar/edit-conta-pagar/edit-conta-pagar.component';
 import { NewContaPagarComponent } from './pages/movimentacaofinanceira/contaspagar/new-conta-pagar/new-conta-pagar.component';
+import { DemonstrativoAtualComponent } from './pages/report/demonstrativo-atual/demonstrativo-atual.component';
 
 const routes: Routes = [
   {
@@ -96,6 +97,8 @@ const routes: Routes = [
       { path: 'resumocontasrecebercontrato/:id', component: ResumoContasrecebercontratoComponent},
 
       { path: 'quitarcontasrecebercontrato/:exercicio/:id', component: QuitarFaturaContratoComponent},
+
+      { path: 'demonstrativoatual', component: DemonstrativoAtualComponent },
     ],
     canActivate: [AuthGuard]
   },

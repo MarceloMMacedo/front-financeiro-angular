@@ -71,8 +71,9 @@ export class ContasPagarReceberComponent implements OnInit {
         console.log(fileURL);
         window.open(fileURL);
 
-        this.spinner.hide();
+
       });
+      this.spinner.hide();
     }, 1000);
   }
 }

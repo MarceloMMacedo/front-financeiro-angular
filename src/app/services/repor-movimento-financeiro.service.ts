@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { API_CONFIG } from '../config/api.config';
+import { ReportDemostrativoFinancerio } from '../models/report/report-demostrativo-financerio';
 import { ResumoMovimentoFinaneiro } from '../models/report/resumo-movimento-finaneiro';
 import { Resumocontas } from '../models/report/resumocontas';
 import { StorageService } from './storage.service';
@@ -29,5 +30,10 @@ export class ReporMovimentoFinanceiroService {
       // 'responseType'  : 'blob' as 'json'        //This also worked
     };
     return this.http.get<any>(`${API_CONFIG.repormovimentofinanceiro}/printdemonstrativo`, httpOptions);
+  }
+  reportdemostrativofinancerio():Observable<ReportDemostrativoFinancerio[]>{
+    return this.http.get<ReportDemostrativoFinancerio[]>(`${API_CONFIG.repormovimentofinanceiro}/reportdemostrativofinancerio`);
+
+
   }
 }
