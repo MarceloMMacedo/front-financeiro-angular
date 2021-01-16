@@ -19,7 +19,8 @@
         <div class="box-header with-border my-custom-scrollbarauto">
 
           <h3 class="box-title  ">Lista Contas Pagar</h3>
-          <button type="button" class="btn btn-outline-primary btn-sm  pull-right  " style="float:right">
+          <button type="button" class="btn btn-outline-primary btn-sm  pull-right  " (click)="printview()"
+            style="float:right">
             <i nz-icon nzType="printer" nzTheme="outline"></i>Imprimir
           </button>
           <!-- [nzData]="resumo.resumoPagar"-->
@@ -34,7 +35,7 @@
                 <th>Fevereiro</th>
                 <th>Março</th>
                 <th>Abril</th>
-                <th>Maoi</th>
+                <th>Maio</th>
                 <th>Junho</th>
                 <th>Julho</th>
                 <th>Agosto</th>
@@ -46,289 +47,350 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of demostrativoFinancerio">
-                <td><a>  {{item.exercicio}} </a> </td>
+                <td><a (click)="printvieexercicio(item.exercicio)"> {{item.exercicio}} </a> </td>
                 <td>
 
-                  <label style="width: 100%; border-bottom: double ;margin-top: 20px;"> Entradas </label> <br>
-                  <label style="width: 100%; border-bottom: double"> Saidas  </label> <br>
+                  <label style="width: 100%; border-bottom: double ;margin-top: 50px;"> Entradas </label> <br>
+                  <label style="width: 100%; border-bottom: double"> Saidas </label> <br>
                   <label style="width: 100%; border-bottom: double ;border-left: 1px solid black;"> Faturamento</label>
                 </td>
                 <td>
+                  <a (click)="printvieperiodo(item.exercicio,1)"style="float:right">
+                    <i nz-icon nzType="printer" nzTheme="outline"></i></a>
                   <table style="width:100%  ">
-
-                      <tr   >
+                    <tr>
                         <th>Realizados</th>
                         <th>Futuros</th>
-                      </tr>
-
-                      <tr >
-                        <td> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.jan.valoresEntradaQuit  | currency:'BRL'}} </label> <br>
-                        </td>
-                        <td><label style="width: 100%; border-bottom: double; text-align: center;border-left: 1;"> {{item.jan.valoresSaidaQuit  | currency:'BRL'}}  </label> <br>
-                        </td>
-                      </tr>
-                      <tr >
-                        <td> <label style="width: 100%; border-bottom: double ; text-align: center"> {{item.jan.valoresEntradaAberto  | currency:'BRL'}} </label> <br>
-                        </td>
-                        <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.jan.valoresSaidaAberto  | currency:'BRL'}}  </label> <br>
-                        </td>
-                      </tr>
+                    </tr>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.jan.valoresEntradaQuit | currency:'BRL'}} </label> <br>
+                      </td>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center;border-left: 1;">
+                          {{item.jan.valoresEntradaAberto | currency:'BRL'}} </label> <br>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double ; text-align: center">
+                          {{item.jan.valoresSaidaQuit | currency:'BRL'}} </label> <br>
+                      </td>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.jan.valoresSaidaAberto | currency:'BRL'}} </label> <br>
+                      </td>
+                    </tr>
 
                   </table>
-                    <label style="width: 100%; border-bottom: double; text-align: center" ng-class="red: item.jan.faturado<0" > {{item.jan.faturado  | currency:'BRL'}} </label>
+                  <label style="width: 100%; border-bottom: double; text-align: center"
+                    ng-class="red: item.jan.faturado<0"> {{item.jan.faturado | currency:'BRL'}} </label>
                 <td>
+                  <a (click)="printvieperiodo(item.exercicio,2)"style="float:right">
+                    <i nz-icon nzType="printer" nzTheme="outline"></i></a>
                   <table style="width:100%  ">
 
-                    <tr   >
+                    <tr>
                       <th>Realizados</th>
                       <th>Futuros</th>
                     </tr>
 
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.fev.valoresEntradaQuit  | currency:'BRL'}} </label> <br>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.fev.valoresEntradaQuit | currency:'BRL'}} </label> <br>
                       </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.fev.valoresSaidaQuit  | currency:'BRL'}}  </label> <br>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.fev.valoresEntradaAberto | currency:'BRL'}} </label> <br>
                       </td>
                     </tr>
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double ; text-align: center"> {{item.fev.valoresEntradaAberto  | currency:'BRL'}} </label> <br>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double ; text-align: center">
+                          {{item.fev.valoresSaidaQuit | currency:'BRL'}} </label> <br>
                       </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.fev.valoresSaidaAberto  | currency:'BRL'}}  </label> <br>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.fev.valoresSaidaAberto | currency:'BRL'}} </label> <br>
                       </td>
                     </tr>
 
-                </table>
-                    <label style="width: 100%; border-bottom: double; text-align: center"> {{item.fev.faturado  | currency:'BRL'}} </label>
+                  </table>
+                  <label style="width: 100%; border-bottom: double; text-align: center"> {{item.fev.faturado |
+                    currency:'BRL'}} </label>
                 </td>
                 <td>
+                  <a (click)="printvieperiodo(item.exercicio,3)"style="float:right">
+                    <i nz-icon nzType="printer" nzTheme="outline"></i></a>
                   <table style="width:100%  ">
-
-                    <tr   >
+                    <tr>
                       <th>Realizados</th>
                       <th>Futuros</th>
                     </tr>
-
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.mar.valoresEntradaQuit  | currency:'BRL'}} </label> <br>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.mar.valoresEntradaQuit | currency:'BRL'}} </label> <br>
                       </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.mar.valoresSaidaQuit  | currency:'BRL'}}  </label> <br>
-                      </td>
-                    </tr>
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double ; text-align: center"> {{item.mar.valoresEntradaAberto  | currency:'BRL'}} </label> <br>
-                      </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.mar.valoresSaidaAberto  | currency:'BRL'}}  </label> <br>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.mar.valoresEntradaAberto | currency:'BRL'}} </label> <br>
                       </td>
                     </tr>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double ; text-align: center">
+                          {{item.mar.valoresSaidaQuit | currency:'BRL'}} </label> <br>
+                      </td>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.mar.valoresSaidaAberto | currency:'BRL'}} </label> <br>
+                      </td>
+                    </tr>
 
-                </table><label style="width: 100%; border-bottom: double; text-align: center"> {{item.mar.faturado  | currency:'BRL'}} </label>
+                  </table><label style="width: 100%; border-bottom: double; text-align: center"> {{item.mar.faturado |
+                    currency:'BRL'}} </label>
                 </td>
                 <td>
+                  <a (click)="printvieperiodo(item.exercicio,4)"style="float:right">
+                    <i nz-icon nzType="printer" nzTheme="outline"></i></a>
                   <table style="width:100%  ">
-
-                    <tr   >
+                    <tr>
                       <th>Realizados</th>
                       <th>Futuros</th>
                     </tr>
-
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.abr.valoresEntradaQuit  | currency:'BRL'}} </label> <br>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.abr.valoresEntradaQuit | currency:'BRL'}} </label> <br>
                       </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.abr.valoresSaidaQuit  | currency:'BRL'}}  </label> <br>
-                      </td>
-                    </tr>
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double ; text-align: center"> {{item.abr.valoresEntradaAberto  | currency:'BRL'}} </label> <br>
-                      </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.abr.valoresSaidaAberto  | currency:'BRL'}}  </label> <br>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.abr.valoresEntradaAberto | currency:'BRL'}} </label> <br>
                       </td>
                     </tr>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double ; text-align: center">
+                          {{item.abr.valoresSaidaQuit | currency:'BRL'}} </label> <br>
+                      </td>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.abr.valoresSaidaAberto | currency:'BRL'}} </label> <br>
+                      </td>
+                    </tr>
 
-                </table><label style="width: 100%; border-bottom: double; text-align: center"> {{item.abr.faturado  | currency:'BRL'}} </label>
+                  </table><label style="width: 100%; border-bottom: double; text-align: center"> {{item.abr.faturado |
+                    currency:'BRL'}} </label>
                 </td>
                 <td>
+                  <a (click)="printvieperiodo(item.exercicio,5)"style="float:right">
+                    <i nz-icon nzType="printer" nzTheme="outline"></i></a>
                   <table style="width:100%  ">
-
-                    <tr   >
+                    <tr>
                       <th>Realizados</th>
                       <th>Futuros</th>
                     </tr>
-
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.mai.valoresEntradaQuit  | currency:'BRL'}} </label> <br>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.mai.valoresEntradaQuit | currency:'BRL'}} </label> <br>
                       </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.mai.valoresSaidaQuit  | currency:'BRL'}}  </label> <br>
-                      </td>
-                    </tr>
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double ; text-align: center"> {{item.mai.valoresEntradaAberto  | currency:'BRL'}} </label> <br>
-                      </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.mai.valoresSaidaAberto  | currency:'BRL'}}  </label> <br>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.mai.valoresEntradaAberto | currency:'BRL'}} </label> <br>
                       </td>
                     </tr>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double ; text-align: center">
+                          {{item.mai.valoresSaidaQuit | currency:'BRL'}} </label> <br>
+                      </td>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.mai.valoresSaidaAberto | currency:'BRL'}} </label> <br>
+                      </td>
+                    </tr>
 
-                </table> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.mai.faturado  | currency:'BRL'}} </label>
+                  </table> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.mai.faturado |
+                    currency:'BRL'}} </label>
                 </td>
                 <td>
+                  <a (click)="printvieperiodo(item.exercicio,6)"style="float:right">
+                    <i nz-icon nzType="printer" nzTheme="outline"></i></a>
                   <table style="width:100%  ">
-
-                    <tr   >
+                    <tr>
                       <th>Realizados</th>
                       <th>Futuros</th>
                     </tr>
-
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.jun.valoresEntradaQuit  | currency:'BRL'}} </label> <br>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.jun.valoresEntradaQuit | currency:'BRL'}} </label> <br>
                       </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.jun.valoresSaidaQuit  | currency:'BRL'}}  </label> <br>
-                      </td>
-                    </tr>
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double ; text-align: center"> {{item.jun.valoresEntradaAberto  | currency:'BRL'}} </label> <br>
-                      </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.jun.valoresSaidaAberto  | currency:'BRL'}}  </label> <br>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.jun.valoresEntradaAberto | currency:'BRL'}} </label> <br>
                       </td>
                     </tr>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double ; text-align: center">
+                          {{item.jun.valoresSaidaQuit | currency:'BRL'}} </label> <br>
+                      </td>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.jun.valoresSaidaAberto | currency:'BRL'}} </label> <br>
+                      </td>
+                    </tr>
 
-                </table><label style="width: 100%; border-bottom: double; text-align: center"> {{item.jun.faturado  | currency:'BRL'}} </label>
+                  </table><label style="width: 100%; border-bottom: double; text-align: center"> {{item.jun.faturado |
+                    currency:'BRL'}} </label>
                 </td>
                 <td>
+                  <a (click)="printvieperiodo(item.exercicio,7)"style="float:right">
+                    <i nz-icon nzType="printer" nzTheme="outline"></i></a>
                   <table style="width:100%  ">
-
-                    <tr   >
+                    <tr>
                       <th>Realizados</th>
                       <th>Futuros</th>
                     </tr>
-
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.jul.valoresEntradaQuit  | currency:'BRL'}} </label> <br>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.jul.valoresEntradaQuit | currency:'BRL'}} </label> <br>
                       </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.jul.valoresSaidaQuit  | currency:'BRL'}}  </label> <br>
-                      </td>
-                    </tr>
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double ; text-align: center"> {{item.jul.valoresEntradaAberto  | currency:'BRL'}} </label> <br>
-                      </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.jul.valoresSaidaAberto  | currency:'BRL'}}  </label> <br>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.jul.valoresEntradaAberto | currency:'BRL'}} </label> <br>
                       </td>
                     </tr>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double ; text-align: center">
+                          {{item.jul.valoresSaidaQuit | currency:'BRL'}} </label> <br>
+                      </td>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.jul.valoresSaidaAberto | currency:'BRL'}} </label> <br>
+                      </td>
+                    </tr>
 
-                </table><label style="width: 100%; border-bottom: double; text-align: center"> {{item.jul.faturado  | currency:'BRL'}} </label>
+                  </table><label style="width: 100%; border-bottom: double; text-align: center"> {{item.jul.faturado |
+                    currency:'BRL'}} </label>
                 </td>
                 <td>
+                  <a (click)="printvieperiodo(item.exercicio,8)"style="float:right">
+                    <i nz-icon nzType="printer" nzTheme="outline"></i></a>
                   <table style="width:100%  ">
-
-                    <tr   >
+                    <tr>
                       <th>Realizados</th>
                       <th>Futuros</th>
                     </tr>
-
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.ago.valoresEntradaQuit  | currency:'BRL'}} </label> <br>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.ago.valoresEntradaQuit | currency:'BRL'}} </label> <br>
                       </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.ago.valoresSaidaQuit  | currency:'BRL'}}  </label> <br>
-                      </td>
-                    </tr>
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double ; text-align: center"> {{item.ago.valoresEntradaAberto  | currency:'BRL'}} </label> <br>
-                      </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.ago.valoresSaidaAberto  | currency:'BRL'}}  </label> <br>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.ago.valoresEntradaAberto | currency:'BRL'}} </label> <br>
                       </td>
                     </tr>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double ; text-align: center">
+                          {{item.ago.valoresSaidaQuit | currency:'BRL'}} </label> <br>
+                      </td>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.ago.valoresSaidaAberto | currency:'BRL'}} </label> <br>
+                      </td>
+                    </tr>
 
-                </table> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.ago.faturado  | currency:'BRL'}} </label>
+                  </table> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.ago.faturado |
+                    currency:'BRL'}} </label>
+                </td>
+                <td> <a (click)="printvieperiodo(item.exercicio,9)"style="float:right">
+                  <i nz-icon nzType="printer" nzTheme="outline"></i></a>
+                  <table style="width:100%  ">
+                    <tr>
+                      <th>Realizados</th>
+                      <th>Futuros</th>
+                    </tr>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.set.valoresEntradaQuit | currency:'BRL'}} </label> <br>
+                      </td>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.set.valoresEntradaAberto | currency:'BRL'}} </label> <br>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double ; text-align: center">
+                          {{item.set.valoresSaidaQuit | currency:'BRL'}} </label> <br>
+                      </td>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.set.valoresSaidaAberto | currency:'BRL'}} </label> <br>
+                      </td>
+                    </tr>
+
+                  </table><label style="width: 100%; border-bottom: double; text-align: center"> {{item.set.faturado |
+                    currency:'BRL'}} </label>
                 </td>
                 <td>
+                  <a (click)="printvieperiodo(item.exercicio,10)"style="float:right">
+                    <i nz-icon nzType="printer" nzTheme="outline"></i></a>
                   <table style="width:100%  ">
-
-                    <tr   >
+                    <tr>
                       <th>Realizados</th>
                       <th>Futuros</th>
                     </tr>
-
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.set.valoresEntradaQuit  | currency:'BRL'}} </label> <br>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.out.valoresEntradaQuit | currency:'BRL'}} </label> <br>
                       </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.set.valoresSaidaQuit  | currency:'BRL'}}  </label> <br>
-                      </td>
-                    </tr>
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double ; text-align: center"> {{item.set.valoresEntradaAberto  | currency:'BRL'}} </label> <br>
-                      </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.set.valoresSaidaAberto  | currency:'BRL'}}  </label> <br>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.out.valoresEntradaAberto | currency:'BRL'}} </label> <br>
                       </td>
                     </tr>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double ; text-align: center">
+                          {{item.out.valoresSaidaQuit | currency:'BRL'}} </label> <br>
+                      </td>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.out.valoresSaidaAberto | currency:'BRL'}} </label> <br>
+                      </td>
+                    </tr>
 
-                </table><label style="width: 100%; border-bottom: double; text-align: center"> {{item.set.faturado  | currency:'BRL'}} </label>
+                  </table> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.out.faturado |
+                    currency:'BRL'}} </label>
                 </td>
                 <td>
+                  <a (click)="printvieperiodo(item.exercicio,11)"style="float:right">
+                    <i nz-icon nzType="printer" nzTheme="outline"></i></a>
                   <table style="width:100%  ">
-
-                    <tr   >
+                    <tr>
                       <th>Realizados</th>
                       <th>Futuros</th>
                     </tr>
-
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.out.valoresEntradaQuit  | currency:'BRL'}} </label> <br>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.nov.valoresEntradaQuit | currency:'BRL'}} </label> <br>
                       </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.out.valoresSaidaQuit  | currency:'BRL'}}  </label> <br>
-                      </td>
-                    </tr>
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double ; text-align: center"> {{item.out.valoresEntradaAberto  | currency:'BRL'}} </label> <br>
-                      </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.out.valoresSaidaAberto  | currency:'BRL'}}  </label> <br>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.nov.valoresEntradaAberto | currency:'BRL'}} </label> <br>
                       </td>
                     </tr>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double ; text-align: center">
+                          {{item.nov.valoresSaidaQuit | currency:'BRL'}} </label> <br>
+                      </td>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.nov.valoresSaidaAberto | currency:'BRL'}} </label> <br>
+                      </td>
+                    </tr>
 
-                </table> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.out.faturado  | currency:'BRL'}} </label>
+                  </table> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.nov.faturado |
+                    currency:'BRL'}} </label>
                 </td>
                 <td>
+                  <a (click)="printvieperiodo(item.exercicio,12)"style="float:right">
+                    <i nz-icon nzType="printer" nzTheme="outline"></i></a>
                   <table style="width:100%  ">
-
-                    <tr   >
+                    <tr>
                       <th>Realizados</th>
                       <th>Futuros</th>
                     </tr>
-
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.nov.valoresEntradaQuit  | currency:'BRL'}} </label> <br>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.dez.valoresEntradaQuit | currency:'BRL'}} </label> <br>
                       </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.nov.valoresSaidaQuit  | currency:'BRL'}}  </label> <br>
-                      </td>
-                    </tr>
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double ; text-align: center"> {{item.nov.valoresEntradaAberto  | currency:'BRL'}} </label> <br>
-                      </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.nov.valoresSaidaAberto  | currency:'BRL'}}  </label> <br>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.dez.valoresEntradaAberto | currency:'BRL'}} </label> <br>
                       </td>
                     </tr>
-
-                </table>   <label style="width: 100%; border-bottom: double; text-align: center"> {{item.nov.faturado  | currency:'BRL'}} </label>
-                </td>
-                <td>
-                  <table style="width:100%  ">
-
-                    <tr   >
-                      <th>Realizados</th>
-                      <th>Futuros</th>
-                    </tr>
-
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double; text-align: center"> {{item.dez.valoresEntradaQuit  | currency:'BRL'}} </label> <br>
+                    <tr>
+                      <td> <label style="width: 100%; border-bottom: double ; text-align: center">
+                          {{item.dez.valoresSaidaQuit | currency:'BRL'}} </label> <br>
                       </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.dez.valoresSaidaQuit  | currency:'BRL'}}  </label> <br>
-                      </td>
-                    </tr>
-                    <tr >
-                      <td> <label style="width: 100%; border-bottom: double ; text-align: center"> {{item.dez.valoresEntradaAberto  | currency:'BRL'}} </label> <br>
-                      </td>
-                      <td><label style="width: 100%; border-bottom: double; text-align: center"> {{item.dez.valoresSaidaAberto  | currency:'BRL'}}  </label> <br>
+                      <td><label style="width: 100%; border-bottom: double; text-align: center">
+                          {{item.dez.valoresSaidaAberto | currency:'BRL'}} </label> <br>
                       </td>
                     </tr>
 
-                </table><label style="width: 100%; border-bottom: double; text-align: center" > {{item.dez.faturado  | currency:'BRL'}} </label>
+                  </table><label style="width: 100%; border-bottom: double; text-align: center"> {{item.dez.faturado |
+                    currency:'BRL'}} </label>
                 </td>
               </tr>
 

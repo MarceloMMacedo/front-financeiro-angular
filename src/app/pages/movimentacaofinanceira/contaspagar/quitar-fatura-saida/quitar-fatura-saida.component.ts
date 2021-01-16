@@ -131,7 +131,7 @@ export class QuitarFaturaSaidaComponent implements OnInit {
           }
         );
         this.movimentoSaidaService.uploadPicture(this.index, this.formData);
-        this.movimentoSaidaService.quitarfatura(this.index).subscribe(
+       /* this.movimentoSaidaService.quitarfatura(this.index).subscribe(
           rest => {
             rest.dataquitacao = new Date();
             if (rest.status == 'Aberto') { this.finalizado = false } else { this.finalizado = true; }
@@ -142,11 +142,10 @@ export class QuitarFaturaSaidaComponent implements OnInit {
             this.spinner.hide();
           }
         );
-
+*/
 
         }, 500);
-        setTimeout(() => {   this.router.navigate(['resumocontaspagar', this.exercicio]);
-      }, 1000);
+
       },
       nzCancelText: 'Não'
     });

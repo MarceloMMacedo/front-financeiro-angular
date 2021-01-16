@@ -14,7 +14,7 @@ import { UtilsService } from './utils.service';
 })
 export class ReporMovimentoFinanceiroService {
 
-  constructor(   public http: HttpClient,
+  constructor(public http: HttpClient,
     public storage: StorageService,
     private utilService: UtilsService,
     private spinner: NgxSpinnerService) { }
@@ -23,17 +23,32 @@ export class ReporMovimentoFinanceiroService {
   getAll(): Observable<ResumoMovimentoFinaneiro> {
     return this.http.get<ResumoMovimentoFinaneiro>(`${API_CONFIG.repormovimentofinanceiro}`);
   }
-
+  reportdemostrativofinancerio(): Observable<ReportDemostrativoFinancerio[]> {
+    return this.http.get<ReportDemostrativoFinancerio[]>(`${API_CONFIG.repormovimentofinanceiro}/reportdemostrativofinancerio`);
+  }
   getview(): any {
     const httpOptions = {
       responseType: 'arraybuffer' as 'json'
-      // 'responseType'  : 'blob' as 'json'        //This also worked
     };
     return this.http.get<any>(`${API_CONFIG.repormovimentofinanceiro}/printdemonstrativo`, httpOptions);
   }
-  reportdemostrativofinancerio():Observable<ReportDemostrativoFinancerio[]>{
-    return this.http.get<ReportDemostrativoFinancerio[]>(`${API_CONFIG.repormovimentofinanceiro}/reportdemostrativofinancerio`);
-
-
+//todos report
+  viewpddemonstrativosintetico(): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+    };
+    return this.http.get<any>(`${API_CONFIG.repormovimentofinanceiro}/viewpddemonstrativosintetico`, httpOptions);
+  }
+  viewpddemonstrativosinteticoexercicio(exercico: number): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+    };
+    return this.http.get<any>(`${API_CONFIG.repormovimentofinanceiro}/viewpddemonstrativosinteticoexercicio?exercico=${exercico}`, httpOptions);
+  }
+  getviewsinteticoperiodo(exercico: number, mes: number): any {
+    const httpOptions = {
+      responseType: 'arraybuffer' as 'json'
+    };
+    return this.http.get<any>(`${API_CONFIG.repormovimentofinanceiro}/printdemonstrativoperiodo?exercico=${exercico}&mes=${mes}`, httpOptions);
   }
 }

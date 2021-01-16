@@ -53,8 +53,7 @@ export class ResumoContasrecebercontratoComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.params.subscribe(params => this.index = params['id']);
-    this.spinner.show();
-    setTimeout(() => {
+
     this.movimentoContratoService.getAll(this.index).subscribe(
       rest => {
         this.resumoAnual = rest;
@@ -131,8 +130,7 @@ export class ResumoContasrecebercontratoComponent implements OnInit {
         };
       }, 100)
     );
-    this.spinner.hide();
-  },200)
+
   }
   quitar(id) {
     console.log(id.event.id + '-'+ this.index);

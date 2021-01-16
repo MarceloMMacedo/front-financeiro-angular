@@ -22,9 +22,10 @@
             [routerLink]="['/contaspagar']" routerLinkActive="router-link-active"><i nz-icon nzType="new"
               nzTheme="outline"></i> Nova Conta a Pagar</button>
           <h3 class="box-title  ">Lista Contas Pagar</h3>
-          <button type="button" class="btn btn-outline-primary btn-sm" (click)="printview()">
+          <!--<button type="button" class="btn btn-outline-primary btn-sm" (click)="printview()">
             <i nz-icon nzType="printer" nzTheme="outline"></i>Imprimir
           </button>
+        -->
           <nz-table style="margin-top: 10px;" #smallTable nzSize="small" [nzData]="resumo.resumoPagar"
             [nzBordered]=true>
 

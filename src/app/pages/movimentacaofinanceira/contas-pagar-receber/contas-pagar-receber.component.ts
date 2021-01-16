@@ -57,9 +57,6 @@ export class ContasPagarReceberComponent implements OnInit {
   printview() {
     this.spinner.show();
     setTimeout(() => {
-
-
-
     this.reporMovimentoFinanceiroService.getview().subscribe(
       (response) => {
         console.log(response);

@@ -145,22 +145,21 @@ export class QuitarFaturaContratoComponent implements OnInit {
           nzOnOk: () => {
             setTimeout(() => {
               this.movimentoContratoService.save(this.fatura);
+              this.finalizado=true;
 
-              this.finalizado = true;
-              //    this.router.navigate(['resumocontasrecebercontrato', this.exercicio]);
-              /*setTimeout(() => {
-                this.movimentoContratoService.uploadPicture(this.index, this.formData);
-                this.movimentoContratoService.save(this.fatura);
-              }, 100)
-      */
-              this.voltar();
-            }, 500);
-            setTimeout(() => {
-              this.movimentoContratoService.save(this.fatura);
-              this.router.navigate(['resumocontasrecebercontrato', this.exercicio]);
-
-              this.voltar();
-            }, 1000)
+            }, 1000);
+             this.movimentoContratoService.quitarfatura(this.index).subscribe(
+      rest => {
+        rest.dataquitacao = new Date();
+        if (rest.status == 'Aberto') { this.finalizado = false } else { this.finalizado = true; }
+        rest.idbanco = this.bancos[0].id;
+        rest.formapagamento = 'Dinheiro';
+        rest.numerodocumento = '';
+        this.fatura = rest;
+        this.somatotal();
+        this.spinner.hide();
+      }
+    )
           },
           nzCancelText: 'Não'
         });
